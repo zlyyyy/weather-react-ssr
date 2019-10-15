@@ -10,13 +10,13 @@ module.exports = {
       controller: 'page',
       handler: 'index'
     },
-    {
-      path: '/news/:id',
-      exact: true,
-      Component: () => (require('@/page/news').default),
-      controller: 'page',
-      handler: 'index'
-    }
+    // {
+    //   path: '/news/:id',
+    //   exact: true,
+    //   Component: () => (require('@/page/news').default),
+    //   controller: 'page',
+    //   handler: 'index'
+    // }
   ],
   baseDir: resolvePath('../'),
   injectCss: [

@@ -1,7 +1,5 @@
-import page from './page'
-import news from './news'
+import weather from './weather'
 
 export default [
-  page,
-  news
+  weather
 ]

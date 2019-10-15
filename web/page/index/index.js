@@ -1,34 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'dva'
 import { DatePicker } from 'antd'
 import './index.less'
 import { Link } from 'react-router-dom'
 
-function Page (props) {
-  return (
-    <div className='normal'>
+class Home extends Component {
+  render () {
+    const {news} = this.props
+    return (
+      <div className='normal'>
       <div className='welcome' />
-      <ul className='list'>
+      {/* <ul className='list'>
         {
-          props.news && props.news.map(item => (
+          news && news.map(item => (
             <li key={item.id}>
               <div>文章标题: {item.title}</div>
               <div className='toDetail'><Link to={`/news/${item.id}`}>点击查看详情</Link></div>
             </li>
           ))
         }
-      </ul>
+      </ul> */}
       <DatePicker />
     </div>
-  )
+    )
+  }
 }
 
-Page.getInitialProps = async ({ store }) => {
-  await store.dispatch({ type: 'page/getData' })
+Home.getInitialProps = async ({ store }) => {
+  await store.dispatch({ type: 'weather/getWeather' })
 }
 
-const mapStateToProps = (state) => ({
-  news: state.page.news
-})
-
-export default connect(mapStateToProps)(Page)
+export default connect(({ weather }) => ({
+  news: weather.news
+}))(Home);
