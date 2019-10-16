@@ -1,10 +1,12 @@
 import API from '../services';
 const {
+  getCityList,
   getWeather
 } = API.weather
 export default {
   namespace: 'weather',
   state: {
+    cisy: [],
     currentCity: '杭州',
     searchInput: '',
     realtime: {},
@@ -23,6 +25,19 @@ export default {
       yield put({
         type: 'update',
         payload
+      })
+    },
+    *getCityList ({ payload }, { call, put }) {
+      const res = yield call(getCityList)
+      const {
+        result=[]
+      } = res
+      console.log(res)
+      yield put({
+        type: 'update',
+        payload: {
+          city: []
+        }
       })
     },
     *getWeather ({ payload }, { call, put }) {

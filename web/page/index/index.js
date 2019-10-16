@@ -13,6 +13,7 @@ const IconFont = Icon.createFromIconfontCN({
 class Home extends Component {
   static getInitialProps = async ({ store }) => {
     await store.dispatch({ type: 'weather/getWeather' })
+    await store.dispatch({ type: 'weather/getCityList' })
   }
 
   searchInputOnChange = e => {

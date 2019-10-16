@@ -13,6 +13,16 @@ class ApiService extends Service {
     });
     return data
   }
+  async cityList() {
+    const { serverUrl, key } = config.weather;
+    const { data } = await this.ctx.curl(`${serverUrl}/cityList`, {
+      data: {
+        key
+      },
+      dataType: 'json'
+    });
+    return data
+  }
 }
 
 module.exports = ApiService;

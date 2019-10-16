@@ -8,4 +8,5 @@ module.exports = app => {
     router.get(`${route.path}`, controller[route.controller][route.handler])
   })
   router.get('/api/weather', controller.api.weather);
+  router.get('/api/cityList', controller.api.cityList);
 }
