@@ -5,10 +5,13 @@ const {
 export default {
   namespace: 'weather',
   state: {
+    currentCity: '杭州',
+    searchInput: '',
+    realtime: {},
     data: []
   },
   reducers: {
-    init (state, { payload }) {
+    update (state, { payload }) {
       return {
         ...state,
         ...payload
@@ -16,13 +19,23 @@ export default {
     }
   },
   effects: {
-    * getWeather ({ payload }, { call, put }) {
-      const data = yield call(getWeather)
-      console.log(data)
+    *updateSearchInput ({ payload }, {call, put}) {
       yield put({
-        type: 'init',
+        type: 'update',
+        payload
+      })
+    },
+    *getWeather ({ payload }, { call, put }) {
+      const res = yield call(getWeather)
+      const {
+        result:{
+          realtime
+        }={}
+      } = res
+      yield put({
+        type: 'update',
         payload: {
-          data
+          realtime
         }
       })
     }

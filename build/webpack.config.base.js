@@ -108,6 +108,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   resolve: {
     alias: {
+      '~': path.resolve(__dirname, '../node_modules'),
       '@': path.resolve(__dirname, '../web')
     },
     extensions: paths.moduleFileExtensions
