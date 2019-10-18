@@ -6,10 +6,12 @@ const {
 export default {
   namespace: 'weather',
   state: {
-    cisy: [],
+    city: [],
+    searchCitys: [],
     currentCity: '杭州',
     searchInput: '',
     realtime: {},
+    future: [],
     data: []
   },
   reducers: {
@@ -21,7 +23,7 @@ export default {
     }
   },
   effects: {
-    *updateSearchInput ({ payload }, {call, put}) {
+    *updateState ({ payload }, {call, put}) {
       yield put({
         type: 'update',
         payload
@@ -36,21 +38,30 @@ export default {
       yield put({
         type: 'update',
         payload: {
-          city: []
+          city: result
         }
       })
     },
-    *getWeather ({ payload }, { call, put }) {
-      const res = yield call(getWeather)
+    *getWeather ({ payload={} }, { call, put }) {
+      const { city='杭州' } = payload
+      const res = yield call(getWeather, {
+          city
+        }
+      )
+      console.log(res)
       const {
         result:{
-          realtime
+          city: currentCity,
+          realtime,
+          future
         }={}
       } = res
       yield put({
         type: 'update',
         payload: {
-          realtime
+          currentCity,
+          realtime,
+          future
         }
       })
     }

@@ -28,8 +28,8 @@ export class Http {
     errorHook: error => {
       console.error(error);
     },
-    isResultCheck: false,
-    parseResult: data => data && data.data,
+    isResultCheck: true,
+    parseResult: data => data,
     isGetParamJsonStringfy: false,
     correctErrCode: 200,
   };
@@ -47,11 +47,10 @@ export class Http {
   }
 
   checkErrCode(dataObj) {
-    const { errCode, data, errMsg } = dataObj;
+    const { error_code: errCode, data, errMsg } = dataObj;
     if (!errCode || errCode === this.defaultConfig.correctErrCode) {
       return;
     }
-
     const error = new Error(errMsg);
     error.errCode = errCode;
     error.data = data;
@@ -165,6 +164,7 @@ export class Http {
     try {
       const response = await fetch(url, options);
       const processedResponse = await this.processResult(response);
+      console.log(processedResponse)
       return processedResponse;
     } catch (error) {
       if (this.fetchRetryTimes > 2) {

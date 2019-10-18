@@ -4,6 +4,7 @@
   "dependencies": {
     "antd": "^3.23.6",
     "dva": "^2.4.1",
+    "dva-loading": "^3.0.14",
     "egg": "^2.21.0",
     "egg-proxy": "^1.1.0",
     "egg-scripts": "^2.11.0",

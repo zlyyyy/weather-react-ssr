@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import dva from 'dva'
+import createLoading from 'dva-loading';
 import { BrowserRouter, StaticRouter, Route, Switch } from 'react-router-dom'
 import { getWrappedComponent, getComponent } from 'ykfe-utils'
 import { createMemoryHistory, createBrowserHistory } from 'history'
@@ -10,6 +11,7 @@ import models from './models'
 
 const initDva = (options) => {
   const app = dva(options)
+  app.use(createLoading(options));
   models.forEach(m => app.model(m))
   app.router(() => {})
   app.start()
