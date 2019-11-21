@@ -158,7 +158,7 @@ class Home extends Component {
                           <div className={styles.futureDate}>
                             {item.date}
                           </div>
-                          <div className={styles.futureWeather}>
+                          <div className={styles.futureWeather} title={item.weather}>
                             {
                               weatherIcon[item.weather]?
                               <IconFont type={weatherIcon[item.weather]} />:
