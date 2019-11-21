@@ -2,7 +2,7 @@
 import http from '../utils/http';
 import api from './api';
 
-const API_PREIFX = 'https://weather.zhaoly.cn';
+const API_PREIFX = '';
 
 const parseKey = key => {
   let method = 'get';
