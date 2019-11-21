@@ -2,7 +2,7 @@
 import http from '../utils/http';
 import api from './api';
 
-const API_PREIFX = '';
+const API_PREIFX = 'http://127.0.0.1:7001';
 
 const parseKey = key => {
   let method = 'get';
