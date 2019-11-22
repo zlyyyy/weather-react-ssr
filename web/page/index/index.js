@@ -10,13 +10,12 @@ const IconFont = Icon.createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_1461308_u9kzjfbwsu.js',
 });
 
-let timeout;
-let currentValue;
-
 class Home extends Component {
   static getInitialProps = async ({ store }) => {
     await store.dispatch({ type: 'weather/getWeather' })
-    // await store.dispatch({ type: 'weather/getCityList' })
+    await store.dispatch({ type: 'weather/getWallpaper' })
+    // let appDiv = document.getElementById("app");
+    // appDiv.style.background = `url("${this.props.weather.url}") 50% 50% / cover;`
   }
 
   searchInputOnChange = e => {
@@ -41,39 +40,11 @@ class Home extends Component {
     })
   }
 
-  // handleChange = value => {
-  //   const { dispatch } = this.props
-  //   dispatch({
-  //     type: 'weather/updateState',
-  //     payload: {
-  //       searchInput: value
-  //     }
-  //   })
-  // };
-
-  // handleSearch = value => {
-  //   const { city, dispatch } = this.props
-  //   if (value) { 
-  //     if (timeout) {
-  //       clearTimeout(timeout);
-  //       timeout = null;
-  //     }
-  //     currentValue = value;
-  //     const fake = () => {
-  //     }
-  //     timeout = setTimeout(fake, 300);
-  //   } else {
-  //     dispatch({
-  //       type: 'weather/updateState',
-  //       payload: {
-  //         searchCitys: []
-  //       }
-  //     })
-  //   }
-  // };
   render () {
     const {
       inforLoading,
+      url,
+      copyright,
       currentCity,
       searchInput,
       realtime:{
@@ -93,6 +64,9 @@ class Home extends Component {
       boxShadow: 'none',
       padding: '8px'
     };
+    const containerStyle = {
+      background: `url("${url}") 50% 50% / cover;`
+    }
     // const options = this.state.data.map(d => <Option key={d.value}>{d.text}</Option>);
     return (
       <div className={styles.container}>
@@ -226,6 +200,8 @@ class Home extends Component {
 
 export default connect(({ weather, loading }) => ({
   inforLoading: loading.effects['weather/getWeather'],
+  url: weather.url || '',
+  copyright: weather.copyright || '',
   city: weather.city || [],
   searchInput: weather.searchInput || '',
   currentCity: weather.currentCity || '杭州',

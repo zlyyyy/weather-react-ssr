@@ -2,7 +2,7 @@
 import http from '../utils/http';
 import api from './api';
 
-const API_PREIFX = 'https://weather.zhaoly.cn';
+const API_PREIFX = 'http://localhost:7001';
 
 const parseKey = key => {
   let method = 'get';
@@ -48,5 +48,4 @@ const addAPI = (apiObj, functionObj) => {
   }
 };
 addAPI(api, API);
-console.log(API)
 export default API;

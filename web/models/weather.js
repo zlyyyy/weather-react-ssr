@@ -1,11 +1,14 @@
 import API from '../services';
 const {
+  getWallpaper,
   getCityList,
   getWeather
 } = API.weather
 export default {
   namespace: 'weather',
   state: {
+    url: '',
+    copyright: '',
     city: [],
     searchCitys: [],
     currentCity: '杭州',
@@ -27,6 +30,36 @@ export default {
       yield put({
         type: 'update',
         payload
+      })
+    },
+    *getWallpaper ({ payload }, { call, put }) {
+      const res= yield call(getWallpaper)
+      console.log(res)
+      const data = res.data[0]
+      let url
+      let copyright
+      if (res.type === 'bing') {
+        url = /\.com/.test(data.url) ? data.url : 'https://cn.bing.com' + data.url
+        copyright = {
+          name: 'Bing',
+          link: /\.com/.test(data.copyrightlink)
+            ? data.copyrightlink : 'https://cn.bing.com' + data.copyrightlink
+        }
+      } else { // unsplash
+        url = data.urls.raw + '?w=2200'
+        copyright = {
+          name: data.user.name,
+          profileImage: data.user.profile_image.small,
+          link: data.user.links.html
+        }
+      }
+      console.log(res)
+      yield put({
+        type: 'update',
+        payload: {
+          url,
+          copyright
+        }
       })
     },
     *getCityList ({ payload }, { call, put }) {
@@ -66,5 +99,4 @@ export default {
       })
     }
   }
-
 }

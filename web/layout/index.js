@@ -13,6 +13,7 @@ const commonNode = props => (
 )
 
 const Layout = (props) => {
+  console.log(props)
   if (__isBrowser__) {
     return commonNode(props)
   } else {
