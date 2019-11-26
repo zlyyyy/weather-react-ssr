@@ -10,7 +10,50 @@
     }
   }
 }
+.main {
+  position: relative;
+  height: 100%;
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: .6;
+    background-color: #000;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+  }
+  .copyright{
+    position: absolute;
+    bottom: 45px;
+    right: 0;
+    padding: 0 12px;
+    margin: 0 0 13px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 25px;
+    -webkit-transition: opacity .2s linear;
+    transition: opacity .2s linear;
+    text-align: left;
+    a{
+      color: #fff;
+      font-weight: bolder;
+    }
+  }
+}
 .container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -40%;
+  margin-top: -250px;
+  width: 80%;
+  height: 500px;
+  background: #F2FBFF;
+  border-radius: 40px;
+  overflow: hidden;
   :global {
     .ant-spin-nested-loading > div > .ant-spin {
       color: #fff;
@@ -28,6 +71,13 @@
 }
 .leftContent {
   padding: 30px;
+  .LoadingLeft {
+    :global {
+      .ant-spin-dot-item {
+        background-color: #100E3C !important;
+      }
+    }
+  }
 }
 .search {
   margin-bottom: 20px;

@@ -53,7 +53,6 @@ export default {
           link: data.user.links.html
         }
       }
-      console.log(res)
       yield put({
         type: 'update',
         payload: {
@@ -81,7 +80,6 @@ export default {
           city
         }
       )
-      console.log(res)
       const {
         result:{
           city: currentCity,

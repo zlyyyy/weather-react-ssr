@@ -8,12 +8,11 @@ import './index.less'
 const commonNode = props => (
   // 为了同时兼容ssr/csr请保留此判断，如果你的layout没有内容请使用 props.children ? <div>{ props.children }</div> : ''
   props.children
-    ? <div className='main'>{props.children}</div>
+    ? <div className='weather-root'>{props.children}</div>
     : ''
 )
 
 const Layout = (props) => {
-  console.log(props)
   if (__isBrowser__) {
     return commonNode(props)
   } else {
