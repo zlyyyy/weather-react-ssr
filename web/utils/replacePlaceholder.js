@@ -11,7 +11,7 @@ export default (string = '', regex = /:\w+/g, data = {}) => {
       newString = newString.replace(placeholder, newData[key]);
       delete newData[key];
     } else {
-      if(placeholder!==':7001'){
+      if(placeholder!==':7001'&&placeholder!==':8000'){
         console.error(`missing '${placeholder}' data in string!`);
       }
     }

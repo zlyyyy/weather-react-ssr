@@ -26,7 +26,7 @@ const gen = param => {
   const { method, path } = parseKey(param);
   const url = (API_PREIFX || '') + path;
   return async function (data, headers, config) {
-    console.log(method, url, data, headers, config)
+    // console.log(method, url, data, headers, config)
     return http[method](url, data, headers, config);
   };
 };

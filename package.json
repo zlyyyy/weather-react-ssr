@@ -6,6 +6,7 @@
     "dva": "^2.4.1",
     "dva-loading": "^3.0.14",
     "egg": "^2.21.0",
+    "egg-cors": "^2.2.3",
     "egg-proxy": "^1.1.0",
     "egg-scripts": "^2.11.0",
     "egg-static": "^2.2.0",

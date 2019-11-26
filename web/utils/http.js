@@ -150,7 +150,7 @@ export class Http {
   async request(url, customOptions, headers = {}, config = {}) {
     const options = _.assign(
       {
-        credentials: 'include',
+        credentials: 'same-origin', // include, same-origin, *omit
       },
       customOptions
     );
@@ -164,7 +164,6 @@ export class Http {
     try {
       const response = await fetch(url, options);
       const processedResponse = await this.processResult(response);
-      console.log(processedResponse)
       return processedResponse;
     } catch (error) {
       if (this.fetchRetryTimes > 2) {
