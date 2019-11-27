@@ -45,15 +45,10 @@
 }
 .container {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -40%;
-  margin-top: -250px;
-  width: 80%;
-  height: 500px;
-  background: #F2FBFF;
-  border-radius: 40px;
-  overflow: hidden;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  // background: #F2FBFF;
   :global {
     .ant-spin-nested-loading > div > .ant-spin {
       color: #fff;
@@ -71,13 +66,6 @@
 }
 .leftContent {
   padding: 30px;
-  .LoadingLeft {
-    :global {
-      .ant-spin-dot-item {
-        background-color: #100E3C !important;
-      }
-    }
-  }
 }
 .search {
   margin-bottom: 20px;
@@ -105,94 +93,6 @@
         height: 60px;
         line-height: 60px;
       }
-    }
-  }
-}
-.futureContent {
-  background: #fff;
-  border-radius: 20px;
-  height: 280px;
-  padding-top: 20px;
-  .futureDate {
-    font-size: 20px;
-    font-weight: bold;
-    color: #100E3C;
-  }
-  .futureWeather {
-    margin: 10px 0;
-    height: 80px;
-    font-size: 60px;
-    line-height: 80px;
-  }
-  .futureTemperature {
-    margin: 10px 0;
-    font-size: 20px;
-    font-weight: bold;
-    color: #100E3C;
-  }
-  .futureDirect {
-    margin: 10px 0;
-    color: #100E3C;
-  }
-}
-.infor {
-  height: 100%;
-  background: #100E3C;
-  .inforContent {
-    height: 100%;
-    padding-top: 60px;
-  }
-  .dateContent {
-    width: 100%;
-    height: 50px;
-    text-align: center;
-    .weatherIcon {
-      display: inline-block;
-      font-size: 40px;
-      line-height: 50px;
-    }
-    .dateInfor {
-      display: inline-block;
-      color: #fff;
-      text-align: left;
-      margin-left: 20px;
-      .today {
-        font-size: 20px;
-        line-height: 30px;
-      }
-      .date {
-        font-size: 12px;
-        line-height: 20px;
-      }
-    }
-  }
-  .temperature {
-    position: relative;
-    margin: 10px 0;
-    color: #fff;
-    font-size: 140px;
-    text-align: center;
-    .unit {
-      position: absolute;
-      top: 0;
-      font-size: 40px;
-    }
-  }
-  .area {
-    font-size: 20px;
-    color: #fff;
-    text-align: center;
-  }
-  .other {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #fff;
-    text-align: center;
-    .otherItem {
-      line-height: 36px;
-      text-align: left;
-      width: 120px;
-      margin: 0 auto;
     }
   }
 }

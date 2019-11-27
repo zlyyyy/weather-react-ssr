@@ -13,8 +13,9 @@ export default {
     searchCitys: [],
     currentCity: '杭州',
     searchInput: '',
-    realtime: {},
-    future: [],
+    now: {},
+    forecast: [],
+    lifestyle: [],
     data: []
   },
   reducers: {
@@ -77,22 +78,17 @@ export default {
     *getWeather ({ payload={} }, { call, put }) {
       const { city='杭州' } = payload
       const res = yield call(getWeather, {
-          city
+          location: city
         }
       )
-      const {
-        result:{
-          city: currentCity,
-          realtime,
-          future
-        }={}
-      } = res
+      const { now, daily_forecast, lifestyle } = res
       yield put({
         type: 'update',
         payload: {
-          currentCity,
-          realtime,
-          future
+          currentCity: city,
+          now,
+          forecast: daily_forecast,
+          lifestyle
         }
       })
     }

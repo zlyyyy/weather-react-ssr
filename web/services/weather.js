@@ -1,6 +1,6 @@
 const baseUrl = '/api';
 export default {
-  getWeather: `GET ${baseUrl}/weather`,
-  getCityList: `GET ${baseUrl}/cityList`,
+  getWeather: `GET ${baseUrl}/heweather`,
+  getCityList: `GET ${baseUrl}/juhecityList`,
   getWallpaper: `GET ${baseUrl}/wallpaper`
 };
