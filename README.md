@@ -10,4 +10,4 @@
 
 ## 效果截图
 
-<img src="https://github.com/zlyyyy/weather-react-ssr/master/screenshots/weather.png" width="898" />
+<img src="https://github.com/zlyyyy/weather-react-ssr/blob/master/screenshots/weather.png" width="898" />
