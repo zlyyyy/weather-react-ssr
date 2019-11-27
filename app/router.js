@@ -7,6 +7,8 @@ module.exports = app => {
   config.routes.map(route => {
     router.get(`${route.path}`, controller[route.controller][route.handler])
   })
+  router.get('/api/juheweather', controller.juheWeather.weather);
+  router.get('/api/juhecityList', controller.juheWeather.cityList);
   router.get('/api/wallpaper', controller.wallpaper.getWallpaper);
   router.get('/api/heweather', controller.heweather.weather);
 }

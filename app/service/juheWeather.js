@@ -1,9 +1,9 @@
 const Service = require('egg').Service;
 const config = require('../../config/config.default');
+const { serverUrl, key } = config.juheweather;
 
-class ApiService extends Service {
+class JuheWeatherService extends Service {
   async weather(city = '杭州') {
-    const { serverUrl, key } = config.weather;
     const { data } = await this.ctx.curl(`${serverUrl}/query`, {
       data: {
         key,
@@ -14,7 +14,6 @@ class ApiService extends Service {
     return data
   }
   async cityList() {
-    const { serverUrl, key } = config.weather;
     const { data } = await this.ctx.curl(`${serverUrl}/cityList`, {
       data: {
         key
@@ -25,4 +24,4 @@ class ApiService extends Service {
   }
 }
 
-module.exports = ApiService;
+module.exports = JuheWeatherService;
