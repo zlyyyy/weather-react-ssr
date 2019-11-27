@@ -35,7 +35,6 @@ export default {
     },
     *getWallpaper ({ payload }, { call, put }) {
       const res= yield call(getWallpaper)
-      console.log(res)
       const data = res.data[0]
       let url
       let copyright
