@@ -10,6 +10,7 @@
     "egg-proxy": "^1.1.0",
     "egg-scripts": "^2.11.0",
     "egg-static": "^2.2.0",
+    "egg-validate": "^2.0.2",
     "isomorphic-fetch": "^2.2.1",
     "react": "16.8.3",
     "react-dev-utils": "^8.0.0",
