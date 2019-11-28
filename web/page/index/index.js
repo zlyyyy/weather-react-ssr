@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import { Row, Col, Input, Icon } from 'antd'
 import styles from './index.module.less';
-import LeftContent from './components/LeftContent';
+import Search from './components/Search';
 import Infor from './components/Infor';
 
 class Home extends Component {
@@ -45,30 +44,7 @@ class Home extends Component {
     return (
       <div className={styles.main} style={containerStyle}>
         <div className={styles.container}>
-          {/* <Row>
-            <Col span={16} className={styles.leftContent}> 
-              <div className={styles.search}>
-                <Row gutter={16}>
-                  <Col span={10}>
-                    <Input
-                      allowClear
-                      prefix={<Icon style={{ fontSize: 20, color: 'rgba(0,0,0,.25)' }} type="search" />}
-                      placeholder="输入城市名"
-                      size='large'
-                      value={searchInput}
-                      onChange={this.searchInputOnChange}
-                      onPressEnter={this.searchInputOnPressEnter}
-                      style={{
-                        height: 60,
-                        borderRadius: '8px'
-                      }}
-                    />
-                  </Col>
-                </Row>
-              </div>
-              <LeftContent {...this.props} />
-            </Col>
-          </Row> */}
+          <Search />
           <Infor {...this.props} />
         </div>
         <div className={styles.copyright}>
