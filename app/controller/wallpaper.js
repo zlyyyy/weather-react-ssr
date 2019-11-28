@@ -5,7 +5,7 @@ class WallpaperController extends Controller {
   async getWallpaper() {
     const { ctx } = this
     try {
-      const res = await ctx.service.api.wallpaper();
+      const res = await ctx.service.wallpaper.getWallpaper();
       ctx.body = { type: 'bing', data: res.images }
     } catch (error) {
       ctx.body = {

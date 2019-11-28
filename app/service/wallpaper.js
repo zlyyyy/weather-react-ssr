@@ -3,7 +3,7 @@ const config = require('../../config/config.default');
 
 class WallpaperService extends Service {
   // bing壁纸
-  async index() {
+  async getWallpaper() {
     const { data } = await this.ctx.curl('https://cn.bing.com/HPImageArchive.aspx', {
       data: {
         // format js (一般使用这个，返回json格式)xml（返回xml格式）
