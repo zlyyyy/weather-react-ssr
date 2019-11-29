@@ -11,4 +11,6 @@ module.exports = app => {
   router.get('/api/juhecityList', controller.juheWeather.cityList);
   router.get('/api/wallpaper', controller.wallpaper.getWallpaper);
   router.get('/api/heweather', controller.heweather.weather);
+  router.get('/api/heweather/city/top', controller.heweather.searchCityTop);
+  router.get('/api/heweather/city/find', controller.heweather.searchCityFind);
 }

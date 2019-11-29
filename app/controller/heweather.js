@@ -22,13 +22,55 @@ const nowRule = {
   unit: { type: 'string', required: false },
 }
 class HeWeatherController extends Controller {
-  // 实况天气
+  // 常规天气数据
   async weather() {
     const { ctx } = this
     try {
       ctx.validate(nowRule, ctx.query);
       // const { location='杭州' } = ctx.query;
       const res = await ctx.service.heweather.weather({...ctx.query});
+      // 检查调用是否成功，如果调用失败会抛出异常
+      this.checkSuccess(res);
+      ctx.body = res.HeWeather6[0] || res
+    } catch (error) {
+      this.ctx.body = {
+        error: error
+      }
+    }
+  }
+  // 城市搜索热门城市
+  async searchCityTop() {
+    const { ctx } = this
+    const searchCityTopRule = {
+      group: { type: 'string', values:[ 'world', 'cn', 'overseas' ], required: true},
+      number: { type: 'number', required: false },
+      lang: { type: 'string', required: false }
+    }
+    try {
+      ctx.validate(searchCityTopRule, ctx.query);
+      const res = await ctx.service.heweather.searchCityTop({...ctx.query});
+      // 检查调用是否成功，如果调用失败会抛出异常
+      this.checkSuccess(res);
+      ctx.body = res.HeWeather6[0] || res
+    } catch (error) {
+      this.ctx.body = {
+        error: error
+      }
+    }
+  }
+  // 城市搜索
+  async searchCityFind() {
+    const { ctx } = this
+    const searchCityFindRule = {
+      location: 'string',
+      mode: { type: 'string', values:[ 'equal', 'match' ], required: false },
+      group: { type: 'string', required: true},
+      number: { type: 'number', required: false },
+      lang: { type: 'string', required: false }
+    }
+    try {
+      ctx.validate(searchCityFindRule, ctx.query);
+      const res = await ctx.service.heweather.searchCityFind({...ctx.query});
       // 检查调用是否成功，如果调用失败会抛出异常
       this.checkSuccess(res);
       ctx.body = res.HeWeather6[0] || res
