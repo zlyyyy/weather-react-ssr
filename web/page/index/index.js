@@ -8,17 +8,7 @@ class Home extends Component {
   static getInitialProps = async ({ store }) => {
     await store.dispatch({ type: 'weather/getWeather' })
     await store.dispatch({ type: 'weather/getWallpaper' })
-  }
-
-  searchInputOnChange = e => {
-    const { value } = e.target;
-    const { dispatch } = this.props
-    dispatch({
-      type: 'weather/updateState',
-      payload: {
-        searchInput: value
-      }
-    })
+    await store.dispatch({ type: 'weather/getSearchCityTop' })
   }
 
   searchInputOnPressEnter = e => {
@@ -44,7 +34,7 @@ class Home extends Component {
     return (
       <div className={styles.main} style={containerStyle}>
         <div className={styles.container}>
-          <Search />
+          <Search {...this.props} />
           <Infor {...this.props} />
         </div>
         <div className={styles.copyright}>
@@ -64,6 +54,7 @@ export default connect(({ weather, loading }) => ({
   copyright: weather.copyright || '',
   city: weather.city || [],
   searchInput: weather.searchInput || '',
+  searchCitys: weather.searchCitys || [],
   currentCity: weather.currentCity || '杭州',
   forecast: weather.forecast || [],
   now: weather.now || {}

@@ -1,7 +1,8 @@
 import API from '../services';
 const {
   getWallpaper,
-  getCityList,
+  getSearchCityTop,
+  getSearchCityFind,
   getWeather
 } = API.weather
 export default {
@@ -9,14 +10,12 @@ export default {
   state: {
     url: '',
     copyright: '',
-    city: [],
     searchCitys: [],
     currentCity: '杭州',
     searchInput: '',
     now: {},
     forecast: [],
-    lifestyle: [],
-    data: []
+    lifestyle: []
   },
   reducers: {
     update (state, { payload }) {
@@ -61,16 +60,48 @@ export default {
         }
       })
     },
-    *getCityList ({ payload }, { call, put }) {
-      const res = yield call(getCityList)
+    *getSearchCityTop (_, { call, put }) {
+      // const { searchInput } = yield select(({ weather }) => ({
+      //   searchInput: weather.searchInput
+      // }))
+      const res = yield call(getSearchCityTop,{
+        group: 'cn'
+      })
       const {
-        result=[]
+        basic=[]
       } = res
-      console.log(res)
+      const searchCitys = [
+        {
+          title: '热门城市',
+          children: basic
+        }
+      ]
       yield put({
         type: 'update',
         payload: {
-          city: result
+          searchCitys
+        }
+      })
+    },
+    *getSearchCityFind ({ payload }, { call, put }) {
+      const { location } = payload
+      const res = yield call(getSearchCityFind,{
+        group: 'cn',
+        location
+      })
+      const {
+        basic=[]
+      } = res
+      const searchCitys = [
+        {
+          title: '猜你要搜',
+          children: basic
+        }
+      ]
+      yield put({
+        type: 'update',
+        payload: {
+          searchCitys
         }
       })
     },
@@ -80,11 +111,11 @@ export default {
           location: city
         }
       )
-      const { now, daily_forecast, lifestyle } = res
+      const { basic, now, daily_forecast, lifestyle } = res
       yield put({
         type: 'update',
         payload: {
-          currentCity: city,
+          currentCity: basic.location,
           now,
           forecast: daily_forecast,
           lifestyle

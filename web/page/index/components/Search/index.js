@@ -2,40 +2,72 @@ import React, { Component } from 'react';
 import { Icon, Button, Input, AutoComplete  } from 'antd';
 import styles from './index.module.less';
 
-const { Option } = AutoComplete;
+const { Option, OptGroup } = AutoComplete;
 
 class Search extends Component {
-  state = {
-    value: '',
-    dataSource: ['213','123'],
-  };
-
-  onSearch = searchText => {
-    this.setState({
-      dataSource: !searchText ? [] : [searchText, searchText.repeat(2), searchText.repeat(3)],
-    });
-  };
 
   onChange = value => {
-    this.setState({ value });
+    const { dispatch } = this.props
+    dispatch({
+      type: 'weather/updateState',
+      payload: {
+        searchInput: value
+      }
+    })
+    if(value === ''){
+      dispatch({
+        type: 'weather/getSearchCityTop'
+      })
+    }else{
+      dispatch({
+        type: 'weather/getSearchCityFind',
+        payload: {
+          location: value
+        }
+      })
+    }
   };
 
   onSelect = value => {
-    console.log('onSelect', value);
+    const { dispatch } = this.props
+    dispatch({
+      type: 'weather/getWeather',
+      payload: {
+        city: value
+      }
+    })
   }
 
   render() {
-    const { dataSource } = this.state
+    const { searchInput, searchCitys } = this.props
+    const renderTitle = title => {
+      return (
+        <span>
+          {title}
+        </span>
+      );
+    }
+    const options = searchCitys
+      .map(group => (
+        <OptGroup key={group.title} label={renderTitle(group.title)}>
+          {group.children.map(opt => (
+            <Option key={`${opt.location},${opt.parent_city}`} value={`${opt.location},${opt.parent_city}`}>
+              {`${opt.location}-${opt.parent_city}`}
+            </Option>
+          ))}
+        </OptGroup>
+      ))
     return (
       <div className={styles.searchWrapper}>
         <AutoComplete
           className={styles.search}
           size="large"
-          dataSource={dataSource}
+          value={searchInput}
+          dataSource={options}
+          onChange={this.onChange}
           onSelect={this.onSelect}
-          onSearch={this.handleSearch}
           placeholder="输入搜索城市"
-          optionLabelProp="text"
+          optionLabelProp="value"
           dropdownClassName="searchDropdown"
         >
           <Input
