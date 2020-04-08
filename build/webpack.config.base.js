@@ -33,7 +33,7 @@ let webpackModule = {
               [
                 '@babel/preset-env',
                 {
-                  'modules': 'false'
+                  'modules': false
                 }
               ],
               '@babel/preset-react'
